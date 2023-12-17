@@ -13,19 +13,24 @@ from io import StringIO
 
 #from st_aggrid import AgGrid
 #from stqdm import stqdm
+st.set_page_config(page_title="Compstreak",layout='wide')
+st.write('<style>div.block-container{padding-top:0rem;}</style>', unsafe_allow_html=True)
 
 client =boto3.client('s3',aws_access_key_id=st.secrets['AWS_ACCESS_KEY_ID'],aws_secret_access_key=st.secrets['AWS_SECRET_ACCESS_KEY'],region_name=st.secrets['AWS_DEFAULT_REGION'])
 
 S3Bucket=st.secrets['S3Bucket']
-
-
+@st.cache_resource()
 def get_cred():
-    return client.get_object(Bucket=S3Bucket,Key='credentials.json')
-    
-credentialsS3 =get_cred()
 
-credentials=json.loads(credentialsS3['Body'].read())
-print("FROM s3 ",credentials)
+    print("Downlaoding cred From S3 ")
+    credentialsS3=client.get_object(Bucket=S3Bucket,Key='credentials.json')
+    return json.loads(credentialsS3['Body'].read())
+    
+
+credentials=get_cred()
+authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie15',cookie_expiry_days=1)
+Name,AuthStatus,UserName =authenticator.login("Login","main")
+
 
 st.markdown("""
 <style>
@@ -35,9 +40,9 @@ st.markdown("""
 # Execute your app
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
+# Navbar
 st.markdown("""
 <nav class="navbar fixed-top justify-content-center navbar-dark" style="background-color: #3498DB;">
-
   <a class="navbar-brand" target="_blank"> CompSteak</a>
 </nav>
 """, unsafe_allow_html=True)
@@ -56,9 +61,7 @@ st.markdown(
 )
 
 
-authenticator = stauth.Authenticate(credentials,'adfdd','nhhh',cookie_expiry_days=0)
 
-Name,AuthStatus,UserName =authenticator.login("Login","main")
 
 
 
