@@ -14,7 +14,7 @@ from io import StringIO
 #from st_aggrid import AgGrid
 #from stqdm import stqdm
 st.set_page_config(page_title="Compstreak",layout='wide')
-st.write('<style>div.block-container{padding-top:0rem;}</style>', unsafe_allow_html=True)
+st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
 client =boto3.client('s3',aws_access_key_id=st.secrets['AWS_ACCESS_KEY_ID'],aws_secret_access_key=st.secrets['AWS_SECRET_ACCESS_KEY'],region_name=st.secrets['AWS_DEFAULT_REGION'])
 
