@@ -72,7 +72,6 @@ if AuthStatus==None or st.session_state["authentication_status"] ==None:
     
     
 if AuthStatus==True or st.session_state["authentication_status"] ==True:
-    
     st.toast('User {} successfully logged in.'.format(Name))
     if 'CID' not in st.session_state:
         st.session_state['CID']=Name
@@ -95,50 +94,56 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
             
             with tab1:
                 #Month=st.date_input("Month") 
-                todaym =datetime.datetime.now().month
-                todayY =datetime.datetime.now().year
+                if 'MonthDf' in st.session_state:
+                    print("This is From Session ")
+                    #print(st.session_state['MonthDf'])
                 
-                FMonth =todaym
-                FYear =todayY
-                FClient=client_id
-                SubFolder="Data"
-                
-                
-                print(todaym)
-                
-                LookupDir =SubFolder+"/"+str(FClient)+"/"+str(FYear)+"/"+str(FMonth) +"/"
-                
-                
-                TradeFiles=client.list_objects(Bucket=S3Bucket,Prefix=LookupDir)
-                
-                
-                print("========={}==========".format( LookupDir))
-                #print("========={}==========".format(TradeFiles['Contents']))
-                
-                #Getting Files for monrh
-                data=pd.DataFrame()
+                else:    
+                    todaym =datetime.datetime.now().month
+                    todayY =datetime.datetime.now().year
                     
-                for Fkey in TradeFiles['Contents']:
-                    ObjectName =Fkey['Key']
-                    FileCSV =ObjectName.split(".")[-1]
-                    if FileCSV=="csv":
-                        
-                        print(Fkey['Key'])
-                        
+                    FMonth =todaym
+                    FYear =todayY
+                    FClient=client_id
+                    SubFolder="Data"
                     
-                        s3_obj=client.get_object(Bucket=S3Bucket,Key=Fkey['Key'])
-                        S3_data=s3_obj['Body'].read().decode('utf-8')
-                        t=pd.read_csv(StringIO(S3_data))
-                        date_string=Fkey['Key'].split(".")[0]
-                        date_string =date_string.split("/")[-1]
-                        _=print("S3 {}".format(date_string))
-                        format="%d%m%Y"
-                        t['date']=datetime.datetime.strptime(date_string, format).strftime("%d-%m-%Y")
+                    
+                    print(todaym)
+                    
+                    LookupDir =SubFolder+"/"+str(FClient)+"/"+str(FYear)+"/"+str(FMonth) +"/"
+                    
+                    
+                    TradeFiles=client.list_objects(Bucket=S3Bucket,Prefix=LookupDir)
+                    
+                    
+                    print("========={}==========".format( LookupDir))
+                    #print("========={}==========".format(TradeFiles['Contents']))
+                    
+                    #Getting Files for monrh
+                    data=pd.DataFrame()
                         
-                        data=pd.concat([data,t])
-                
-                               
+                    for Fkey in TradeFiles['Contents']:
+                        ObjectName =Fkey['Key']
+                        FileCSV =ObjectName.split(".")[-1]
+                        if FileCSV=="csv":
+                            
+                            print(Fkey['Key'])
+                            
+                        
+                            s3_obj=client.get_object(Bucket=S3Bucket,Key=Fkey['Key'])
+                            S3_data=s3_obj['Body'].read().decode('utf-8')
+                            t=pd.read_csv(StringIO(S3_data))
+                            date_string=Fkey['Key'].split(".")[0]
+                            date_string =date_string.split("/")[-1]
+                            _=print("S3 {}".format(date_string))
+                            format="%d%m%Y"
+                            t['date']=datetime.datetime.strptime(date_string, format).strftime("%d-%m-%Y")
+                            
+                            data=pd.concat([data,t])
+                    
+                    st.session_state['MonthDf']=data
              
+                data =st.session_state['MonthDf']
                 print("Data Read Completed")
                 #Result=data
                 #print(data.columns)
@@ -189,6 +194,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     
                     
                 except Exception as e:
+                    st.error("Data not Avaiable")
                     print(e)
                             
                     
