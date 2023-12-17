@@ -62,19 +62,16 @@ st.markdown(
 
 
 
-
-
-
-if AuthStatus ==False:
+if AuthStatus ==False or st.session_state["authentication_status"] == False:
     st.toast("Username /Password is incorrect")
     st.error('Username/password is incorrect')
     
 
-if AuthStatus ==None:
+if AuthStatus==None or st.session_state["authentication_status"] ==None:
     pass
     
     
-if AuthStatus ==True:
+if AuthStatus==True or st.session_state["authentication_status"] ==True:
     
     st.toast('User {} successfully logged in.'.format(Name))
     if 'CID' not in st.session_state:
