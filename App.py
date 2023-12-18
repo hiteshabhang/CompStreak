@@ -177,7 +177,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result =Result[ColSeq]
                 
                 #st.dataframe(Result)
-                st.dataframe (Result ,hide_index=True,use_container_width=True)
+                st.dataframe (Result ,hide_index=True,use_container_width=True,height=(len(Result)+1)*35+3)
                 #st.dataframe (Result.style.applymap(df_style,subset=['Profit']) ,hide_index=True,use_container_width=True,height=(len(Result)+1)*35+3)
                     
                                      
