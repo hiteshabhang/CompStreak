@@ -159,8 +159,8 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result['Net Profit']= Result['Profit']-Result['Expenses']
                 Colround =['Buy Val ','Sell Val ','Total Value ','Profit','Expenses','Net Profit']
                 
-                for i in Colround:
-                    Result[i] =Result[i].round(2)
+                #for i in Colround:
+                #    Result[i] =Result[i].round(2)
                 
                 Result.loc['Total','date']="Total"
                 Result.loc['Total','Profit'] =Result['Profit'].sum()
