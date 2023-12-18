@@ -59,7 +59,9 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
+def df_style(val):
+    color ='green' if val>0 else 'red'
+    return F'color:{color}'
 
 
 if AuthStatus ==False or st.session_state["authentication_status"] == False:
@@ -175,7 +177,8 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result =Result[ColSeq]
                 
                 #st.dataframe(Result)
-                st.dataframe (Result ,hide_index=True,use_container_width=True)
+                #st.dataframe (Result ,hide_index=True,use_container_width=True)
+                st.dataframe (Result.style.applymap(df_style,subset=['Profit']) ,hide_index=True,use_container_width=True,height=(len(Result)+1)*35+3)
                     
                                      
                     
