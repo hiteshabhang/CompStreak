@@ -105,7 +105,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Mon=st.selectbox("Report For ",month_Picker(),index=0)
                 MonD=datetime.datetime.strptime(Mon,"%b-%Y")
                 
-                st.write(MonD)
+                #st.write(MonD)
                 todaym = MonD.month #datetime.datetime.now().month
                 todayY =MonD.year #datetime.datetime.now().year
                 
