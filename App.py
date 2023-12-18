@@ -155,18 +155,17 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result['Expenses']=  (Result['Total Value ']  * 0.00095)
                 Result['Net Profit']= Result['Profit']-Result['Expenses']
                 Result.loc['Total','date']="Total"
-                Result.loc['Total','Profit'] =Result['Profit'].sum()
-                Result.loc['Total','Expenses'] =Result['Expenses'].sum()
-                Result.loc['Total','Net Profit'] =Result['Net Profit'].sum()
-                Result.loc['Total','Total Value '] =Result['Total Value '].sum()
-                Result.loc['Total','Buy Val '] =Result['Buy Val '].sum()
-                Result.loc['Total','Sell Val '] =Result['Sell Val '].sum()
+                Result.loc['Total','Profit'] =Result['Profit'].sum().round(2)
+                Result.loc['Total','Expenses'] =Result['Expenses'].sum().round(2)
+                Result.loc['Total','Net Profit'] =Result['Net Profit'].sum().round(2)
+                Result.loc['Total','Total Value '] =Result['Total Value '].sum().round(2)
+                Result.loc['Total','Buy Val '] =Result['Buy Val '].sum().round(2)
+                Result.loc['Total','Sell Val '] =Result['Sell Val '].sum().round(2)
             
                 ColSeq =['date','Buy Val ','Sell Val ','Total Value ','Profit','Expenses','Net Profit']
-                Colround =['Buy Val ','Sell Val ','Total Value ','Profit','Expenses','Net Profit']
                 
-                for i in Colround:
-                    Result[i] =Result[i].round(2)
+                
+                
                 Result =Result[ColSeq]
                 
                 #st.dataframe(Result)
