@@ -43,7 +43,7 @@ st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootst
 # Navbar
 st.markdown("""
 <nav class="navbar fixed-top justify-content-center navbar-dark" style="background-color: #3498DB;">
-  <a class="navbar-brand" target="_blank"> CompSteak</a>
+  <a class="navbar-brand" target="_blank"> Compstreak</a>
 </nav>
 """, unsafe_allow_html=True)
 st.markdown(
@@ -216,7 +216,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     
                     
                 except Exception as e:
-                    st.error("Data not Avaiable")
+                    st.error("Data not AvaiLable for selected date.")
                     print(e)
                             
                     
