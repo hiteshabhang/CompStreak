@@ -80,7 +80,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
     UserContainer = st.container()
     with UserContainer:
         with st.sidebar:
-            menu_o=['Home','Setting']
+            menu_o=['Home','Logout']
             selected =option_menu(
                 menu_title ='Welcome {}'.format(client_id),
                 options=menu_o,
@@ -89,6 +89,8 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 default_index=0,
                 styles={"icon": {"color": "orange", "font-size": "10px"}}
                 )
+        if selected =='Logout':
+            authenticator.logout('Logout', 'main')
         if selected =='Home':
             tab1, tab2= st.tabs(["Ledger", "Trades"])
             
