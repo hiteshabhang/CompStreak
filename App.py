@@ -175,7 +175,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result =Result[ColSeq]
                 
                 #st.dataframe(Result)
-                st.dataframe (Result ,hide_index=True)
+                st.dataframe (Result ,hide_index=True,use_container_width=True)
                     
                                      
                     
@@ -200,7 +200,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     s3_obj=client.get_object(Bucket=S3Bucket,Key=LookupDirFileName)
                     S3_data=s3_obj['Body'].read().decode('utf-8')
                     dataf=pd.read_csv(StringIO(S3_data))
-                    st.dataframe(dataf ,hide_index=True)
+                    st.dataframe(dataf ,hide_index=True,use_container_width=True)
                     
                     
                 except Exception as e:
