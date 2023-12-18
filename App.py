@@ -217,7 +217,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     
                     
                 except Exception as e:
-                    st.error("Data not AvaiLable for selected date.")
+                    st.error("Data not Available for selected date.")
                     print(e)
                             
                     
