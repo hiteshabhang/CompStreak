@@ -80,7 +80,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
     UserContainer = st.container()
     with UserContainer:
         with st.sidebar:
-            menu_o=['Home','Logout']
+            menu_o=['Home']
             selected =option_menu(
                 menu_title ='Welcome {}'.format(client_id),
                 options=menu_o,
