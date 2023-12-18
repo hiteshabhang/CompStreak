@@ -28,8 +28,9 @@ def get_cred():
     
 
 credentials=get_cred()
-authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie15',cookie_expiry_days=0)
-Name,AuthStatus,UserName =authenticator.login("Login","main")
+with st.columns(3)[1]:
+    authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie15',cookie_expiry_days=0)
+    Name,AuthStatus,UserName =authenticator.login("Login","main")
 
 
 st.markdown("""
