@@ -62,7 +62,12 @@ st.markdown(
 def df_style(val):
     color ='green' if val>0 else 'red'
     return F'color:{color}'
-
+def month_Picker():
+    today=datetime.datetime.now().date()
+    Months=pd.date_range('2023-11-01',str(today),freq="MS").strftime("%b-%Y").tolist()
+    Months.reverse()
+    #print(Months,today)
+    return Months 
 
 if AuthStatus ==False or st.session_state["authentication_status"] == False:
     st.toast("Username /Password is incorrect")
@@ -97,20 +102,24 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
             
             with tab1:
                 #Month=st.date_input("Month") 
-                if 'MonthDf' in st.session_state:
+                Mon=st.selectbox("Report For ",month_Picker(),index=0)
+                MonD=datetime.datetime.strptime(Mon,"%b-%Y")
+                
+                st.write(MonD)
+                todaym = MonD.month #datetime.datetime.now().month
+                todayY =MonD.year #datetime.datetime.now().year
+                
+                FMonth =todaym
+                FYear =todayY
+                FClient=client_id
+                SubFolder="Data"
+                if 'MonthDf' in st.session_state and  'todaym' in st.session_state and st.session_state['todaym']==todaym:
                     print("This is From Session ")
                     #print(st.session_state['MonthDf'])
                 
                 else:    
-                    todaym =datetime.datetime.now().month
-                    todayY =datetime.datetime.now().year
                     
-                    FMonth =todaym
-                    FYear =todayY
-                    FClient=client_id
-                    SubFolder="Data"
-                    
-                    
+                    st.session_state['todaym']=todaym
                     print(todaym)
                     
                     LookupDir =SubFolder+"/"+str(FClient)+"/"+str(FYear)+"/"+str(FMonth) +"/"
