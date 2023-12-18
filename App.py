@@ -163,6 +163,10 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 Result.loc['Total','Sell Val '] =Result['Sell Val '].sum()
             
                 ColSeq =['date','Buy Val ','Sell Val ','Total Value ','Profit','Expenses','Net Profit']
+                Colround =['Buy Val ','Sell Val ','Total Value ','Profit','Expenses','Net Profit']
+                
+                for i in Colround:
+                    Result[i] =Result[i].round(2)
                 Result =Result[ColSeq]
                 
                 #st.dataframe(Result)
