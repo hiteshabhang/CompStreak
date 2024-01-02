@@ -107,7 +107,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                 MonD=datetime.datetime.strptime(Mon,"%b-%Y")
                 
                 #st.write(MonD)
-                todaym = MonD.month #datetime.datetime.now().month
+                todaym =  d.strftime("%m") #MonD.month #datetime.datetime.now().month
                 todayY =MonD.year #datetime.datetime.now().year
                 
                 FMonth =todaym
