@@ -210,6 +210,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     
                     
                     LookupDirFileName =SubFolder+"/"+str(FClient)+"/"+str(FYear)+"/"+str(FMonth) +"/"+filename
+                    print(LookupDirFileName)
                     s3_obj=client.get_object(Bucket=S3Bucket,Key=LookupDirFileName)
                     S3_data=s3_obj['Body'].read().decode('utf-8')
                     dataf=pd.read_csv(StringIO(S3_data))
