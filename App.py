@@ -130,7 +130,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
                     
                     
                     print("========={}==========".format( LookupDir))
-                    #print("========={}==========".format(TradeFiles['Contents']))
+                    #print("========={}==========".format(TradeFiles))
                     
                     #Getting Files for monrh
                     data=pd.DataFrame()
