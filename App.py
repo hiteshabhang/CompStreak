@@ -34,7 +34,8 @@ with st.columns(3)[1]:
     #print(credentials)
     authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie16',cookie_expiry_days=0)
     print(authenticator)
-    Name,AuthStatus,UserName =authenticator.login("main")
+    authenticator.login("main")
+    #Name,AuthStatus,UserName =authenticator.login("main")
 
 
 st.markdown("""
