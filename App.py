@@ -20,7 +20,7 @@ st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_h
 client =boto3.client('s3',aws_access_key_id=st.secrets['AWS_ACCESS_KEY_ID'],aws_secret_access_key=st.secrets['AWS_SECRET_ACCESS_KEY'],region_name=st.secrets['AWS_DEFAULT_REGION'])
 
 S3Bucket=st.secrets['S3Bucket']
-@st.cache_resource()
+#@st.cache_resource()
 def get_cred():
 
     print("Downlaoding cred From S3 ")
