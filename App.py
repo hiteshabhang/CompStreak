@@ -77,16 +77,16 @@ def month_Picker():
     #print(Months,today)
     return Months 
 
-if AuthStatus ==False or st.session_state["authentication_status"] == False:
+if  st.session_state["authentication_status"] == False:
     st.toast("Username /Password is incorrect")
     st.error('Username/password is incorrect')
     
 
-if AuthStatus==None or st.session_state["authentication_status"] ==None:
+if st.session_state["authentication_status"] ==None:
     pass
     
     
-if AuthStatus==True or st.session_state["authentication_status"] ==True:
+if st.session_state["authentication_status"] ==True:
     st.toast('User {} successfully logged in.'.format(Name))
     if 'CID' not in st.session_state:
         #st.session_state['CID']=Name
