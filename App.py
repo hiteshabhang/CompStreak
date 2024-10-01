@@ -106,7 +106,8 @@ if st.session_state["authentication_status"] ==True:
                 default_index=0,
                 styles={"icon": {"color": "orange", "font-size": "10px"}}
                 )
-            authenticator.logout('Logout', 'main')
+            #authenticator.logout('Logout', 'main')
+            authenticator.logout()
         if selected =='Home':
             tab1, tab2= st.tabs(["Ledger", "Trades"])
             
