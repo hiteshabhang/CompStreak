@@ -87,7 +87,7 @@ if st.session_state["authentication_status"] ==None:
     
     
 if st.session_state["authentication_status"] ==True:
-    st.toast('User {} successfully logged in.'.format(Name))
+    st.toast('User {} successfully logged in.'.format(st.session_state['name']))
     if 'CID' not in st.session_state:
         #st.session_state['CID']=Name
         st.session_state['CID']=st.session_state['name']
