@@ -88,7 +88,8 @@ if AuthStatus==None or st.session_state["authentication_status"] ==None:
 if AuthStatus==True or st.session_state["authentication_status"] ==True:
     st.toast('User {} successfully logged in.'.format(Name))
     if 'CID' not in st.session_state:
-        st.session_state['CID']=Name
+        #st.session_state['CID']=Name
+        st.session_state['CID']=st.session_state['name']
         
     client_id=st.session_state.CID
     UserContainer = st.container()
