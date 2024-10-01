@@ -33,7 +33,7 @@ credentials=get_cred()
 with st.columns(3)[1]:
     #print(credentials)
     authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie16',cookie_expiry_days=0)
-    Name,AuthStatus,UserName =authenticator.login("main")
+    Name,AuthStatus,UserName =authenticator.login()
 
 
 st.markdown("""
