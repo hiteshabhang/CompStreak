@@ -25,6 +25,7 @@ def get_cred():
 
     print("Downlaoding cred From S3 ")
     credentialsS3=client.get_object(Bucket=S3Bucket,Key='credentials.json')
+    print(credentialsS3)
     return json.loads(credentialsS3['Body'].read())
     
 
