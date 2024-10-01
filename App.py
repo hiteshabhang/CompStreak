@@ -36,6 +36,7 @@ with st.columns(3)[1]:
     print(authenticator)
     authenticator.login("main")
     AuthStatus=False
+    Name=None
     #Name,AuthStatus,UserName =authenticator.login("main")
 
 
@@ -90,6 +91,7 @@ if AuthStatus==True or st.session_state["authentication_status"] ==True:
     if 'CID' not in st.session_state:
         #st.session_state['CID']=Name
         st.session_state['CID']=st.session_state['name']
+        Name=st.session_state['name']
         
     client_id=st.session_state.CID
     UserContainer = st.container()
