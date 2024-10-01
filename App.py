@@ -20,18 +20,18 @@ st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_h
 client =boto3.client('s3',aws_access_key_id=st.secrets['AWS_ACCESS_KEY_ID'],aws_secret_access_key=st.secrets['AWS_SECRET_ACCESS_KEY'],region_name=st.secrets['AWS_DEFAULT_REGION'])
 
 S3Bucket=st.secrets['S3Bucket']
-#@st.cache_resource()
+@st.cache_resource()
 def get_cred():
 
     print("Downlaoding cred From S3 ")
     credentialsS3=client.get_object(Bucket=S3Bucket,Key='credentials.json')
-    print(credentialsS3)
+   
     return json.loads(credentialsS3['Body'].read())
     
 
 credentials=get_cred()
 with st.columns(3)[1]:
-    authenticator = stauth.Authenticate(credentials,'adfddG','thiscookie16',cookie_expiry_days=0)
+    authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie16',cookie_expiry_days=0)
     Name,AuthStatus,UserName =authenticator.login("main")
 
 
