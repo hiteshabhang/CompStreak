@@ -35,6 +35,7 @@ with st.columns(3)[1]:
     authenticator = stauth.Authenticate(credentials,'adfdd','thiscookie16',cookie_expiry_days=0)
     print(authenticator)
     authenticator.login("main")
+    AuthStatus=False
     #Name,AuthStatus,UserName =authenticator.login("main")
 
 
