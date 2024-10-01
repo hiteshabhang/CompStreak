@@ -1,4 +1,4 @@
 pandas
-streamlit-authenticator
+pip install streamlit-authenticator==0.4.1
 streamlit-option-menu
 boto3
