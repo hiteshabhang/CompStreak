@@ -67,6 +67,10 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+def clear_cache():
+     for key in st.session_state.keys():
+         st.session_state.pop(key)
+         
 def df_style(val):
     color ='green' if val>0 else 'red'
     return F'color:{color}'
@@ -107,7 +111,7 @@ if st.session_state["authentication_status"] ==True:
                 styles={"icon": {"color": "orange", "font-size": "10px"}}
                 )
             #authenticator.logout('Logout', 'main')
-            authenticator.logout()
+            authenticator.logout(callback=clear_cache)
         if selected =='Home':
             tab1, tab2= st.tabs(["Ledger", "Trades"])
             
